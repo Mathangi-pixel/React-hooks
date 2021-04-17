@@ -1,25 +1,37 @@
-import React,{useState} from 'react';
-
-import Counter from './Counter_hooks';
+import React,{Component} from 'react';
 import './App.css';
+import Counter from './Counter_class';
 
-const App = () => {
-const [showingCounter,setShowingCounter] = useState(false);
-const handleShowCounterOnClick= () => {
-  setShowingCounter(!showingCounter);
-}
-  return(
-    <div className="App">
+class App extends Component{
+  constructor()
+  {
+    super();
+    this.state={
+      showingCounter: false
+    }
+  };
+
+  render(){
+    const handleShowCounterOnClick =()=>{
+      this.setState({
+        showingCounter:!this.state.showingCounter
+      
+      })
+    };
+  
+    return(
+      <div className="App">
       <header>
-        <button onClick={handleShowCounterOnClick}>
-          show / Hide Counter
-        </button>
-        {showingCounter && <Counter />}
+      <button onClick={handleShowCounterOnClick}>
+      Show/Hide Counter
+      </button>
+      {this.state.showingCounter && <Counter />}
       </header>
     </div>
 
-  )
+    )}
+}
+  
+  
 
-
-}  ;
 export default App;
